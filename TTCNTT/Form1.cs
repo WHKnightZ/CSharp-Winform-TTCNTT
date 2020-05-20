@@ -16,10 +16,10 @@ namespace TTCNTT
         private Font drawFont = new Font("Arial", 18);
         private StringFormat sf = new StringFormat();
         private Pen pen = new Pen(Color.Black) { Width = 2 };
-        private Pen penStart = new Pen(Color.DarkViolet) { Width = 4 };
+        private Pen penStart = new Pen(Color.Crimson) { Width = 4 };
         private Pen penDest = new Pen(Color.LimeGreen) { Width = 4 };
         private Pen penBlackArrow = new Pen(Color.Black) { Width = 2, CustomEndCap = new AdjustableArrowCap(5, 5, false) };
-        private Pen penStepArrow = new Pen(Color.Aqua) { Width = 3, CustomEndCap = new AdjustableArrowCap(3, 3, false) };
+        private Pen penStepArrow = new Pen(Color.DarkTurquoise) { Width = 3, CustomEndCap = new AdjustableArrowCap(3, 3, false) };
         private Pen penPathArrow = new Pen(Color.Blue) { Width = 4, CustomEndCap = new AdjustableArrowCap(3, 3, false) };
 
         private int countPoint, countLine;
@@ -33,9 +33,10 @@ namespace TTCNTT
         private int countStep = 0, maxStep = 0;
         private List<int> listPath = new List<int>();
         private bool isFounded = false;
+        private bool isDone = false;
 
         private int chooseState = 0;
-        private string[] textChoose = { "By Nguyen Khanh", "Choose Start ...", "Choose Dest ..." };
+        private string[] textChoose = { "By Khanh.Nguyen", "Choose Start ...", "Choose Dest ..." };
 
         public Form1()
         {
@@ -58,7 +59,11 @@ namespace TTCNTT
             lblChoose.Text = textChoose[chooseState];
             lblStart.Text = "Start: ";
             lblDest.Text = "Dest: ";
+            lblSteps.Text = "Steps:";
+            lblNodes.Text = "Nodes:";
+
             isFounded = false;
+            isDone = false;
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
@@ -100,7 +105,7 @@ namespace TTCNTT
                     n = listStep[countStep].X;
                     g.DrawLine(penPathArrow, lines[old, n].p1, lines[old, n].p2);
                 }
-                if (countStep == maxStep-1)
+                if (isDone)
                 {
                     old = dest;
                     foreach (int i in listPath)
@@ -121,13 +126,23 @@ namespace TTCNTT
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            countStep++;
-            picMap.Invalidate();
-            if (countStep == maxStep-1)
+            if (countStep < maxStep-1)
             {
+                countStep++;
+            }
+            else
+            {
+                isDone = true;
                 grpControl.Enabled = true;
                 timer.Enabled = false;
             }
+            picMap.Invalidate();
+        }
+
+        private void tbSpeed_Scroll(object sender, EventArgs e)
+        {
+            int speed = (sender as TrackBar).Value;
+            timer.Interval = 4000 / speed;
         }
 
         private void btnFind_Click(object sender, EventArgs e)
@@ -177,11 +192,12 @@ namespace TTCNTT
                             {
                                 countStep = 0;
                                 timer.Enabled = true;
+                                isDone = false;
                             }
                             else
                             {
-                                countStep = maxStep - 1;
                                 grpControl.Enabled = true;
+                                isDone = true;
                             }
                         }
                         else
@@ -307,13 +323,17 @@ namespace TTCNTT
                 }
                 if (e.n == dest)
                 {
+                    int nodes = 0;
                     while (true)
                     {
                         listPath.Add(e.n);
                         e = e.prev;
                         if (e == null)
                             break;
+                        nodes++;
                     }
+                    lblNodes.Text = "Nodes: " + nodes;
+                    lblSteps.Text = "Steps: " + maxStep;
                     isFounded = true;
                     break;
                 }

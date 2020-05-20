@@ -15,3 +15,7 @@ Hai điểm được cho bất kỳ, với lộ trình tìm được, cần th�
 - Trên giao diện cần có vùng nhập số lượng điểm (nhỏ hơn 20), số lượng đường (nhỏ hơn 400). Từ hai tham số này sinh ngẫu nhiên tọa độ các điểm cùng đường nối các điểm. Tọa độ (tung độ, hoành độ) các điểm là số nguyên và nằm trong khoảng [-100, 100]. Mỗi điểm được vẽ trên mặt phẳng dưới dạng một hình tròn với bán kính đủ lớn để nhìn thấy được.
 - Trên giao diện cũng cần có vùng nhập điểm đầu và điểm cuối của lộ trình (hoặc có thể click chuột vào các điểm để xác định).
 - Sau khi tìm được lộ trình ngắn nhất nối 2 điểm đã chọn, cần vẽ lộ trình đó một cách nổi bật so với các đường nối các điểm (Giống Google Map chỉ đường).
+
+## Image:
+
+![Image](https://i.imgur.com/zpTsHzu.png)

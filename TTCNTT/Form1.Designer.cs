@@ -42,14 +42,19 @@
             this.lblChoose = new System.Windows.Forms.Label();
             this.picMap = new System.Windows.Forms.PictureBox();
             this.grpInfo = new System.Windows.Forms.GroupBox();
+            this.lblNodes = new System.Windows.Forms.Label();
+            this.lblSteps = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.tbSpeed = new System.Windows.Forms.TrackBar();
             this.grpControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.grpInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // grpControl
             // 
+            this.grpControl.Controls.Add(this.tbSpeed);
             this.grpControl.Controls.Add(this.cbShowStep);
             this.grpControl.Controls.Add(this.label1);
             this.grpControl.Controls.Add(this.lblPoint);
@@ -57,10 +62,11 @@
             this.grpControl.Controls.Add(this.btnGenerate);
             this.grpControl.Controls.Add(this.txtCountLine);
             this.grpControl.Controls.Add(this.txtCountPoint);
-            this.grpControl.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.grpControl.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.grpControl.Location = new System.Drawing.Point(29, 25);
             this.grpControl.Name = "grpControl";
-            this.grpControl.Size = new System.Drawing.Size(146, 269);
+            this.grpControl.Size = new System.Drawing.Size(146, 318);
             this.grpControl.TabIndex = 0;
             this.grpControl.TabStop = false;
             this.grpControl.Text = "Control";
@@ -70,7 +76,7 @@
             this.cbShowStep.AutoSize = true;
             this.cbShowStep.Location = new System.Drawing.Point(36, 169);
             this.cbShowStep.Name = "cbShowStep";
-            this.cbShowStep.Size = new System.Drawing.Size(78, 17);
+            this.cbShowStep.Size = new System.Drawing.Size(89, 20);
             this.cbShowStep.TabIndex = 11;
             this.cbShowStep.Text = "Show Step";
             this.cbShowStep.UseVisualStyleBackColor = true;
@@ -80,7 +86,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(22, 80);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.Size = new System.Drawing.Size(36, 16);
             this.label1.TabIndex = 10;
             this.label1.Text = "Line:";
             // 
@@ -89,13 +95,13 @@
             this.lblPoint.AutoSize = true;
             this.lblPoint.Location = new System.Drawing.Point(22, 46);
             this.lblPoint.Name = "lblPoint";
-            this.lblPoint.Size = new System.Drawing.Size(34, 13);
+            this.lblPoint.Size = new System.Drawing.Size(41, 16);
             this.lblPoint.TabIndex = 9;
             this.lblPoint.Text = "Point:";
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(36, 211);
+            this.btnFind.Location = new System.Drawing.Point(36, 265);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(75, 23);
             this.btnFind.TabIndex = 5;
@@ -118,7 +124,7 @@
             this.txtCountLine.Location = new System.Drawing.Point(70, 77);
             this.txtCountLine.MaxLength = 3;
             this.txtCountLine.Name = "txtCountLine";
-            this.txtCountLine.Size = new System.Drawing.Size(55, 20);
+            this.txtCountLine.Size = new System.Drawing.Size(55, 23);
             this.txtCountLine.TabIndex = 1;
             this.txtCountLine.Text = "10";
             this.txtCountLine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -128,7 +134,7 @@
             this.txtCountPoint.Location = new System.Drawing.Point(70, 43);
             this.txtCountPoint.MaxLength = 2;
             this.txtCountPoint.Name = "txtCountPoint";
-            this.txtCountPoint.Size = new System.Drawing.Size(55, 20);
+            this.txtCountPoint.Size = new System.Drawing.Size(55, 23);
             this.txtCountPoint.TabIndex = 0;
             this.txtCountPoint.Text = "5";
             this.txtCountPoint.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -138,7 +144,7 @@
             this.lblDest.AutoSize = true;
             this.lblDest.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDest.ForeColor = System.Drawing.Color.Green;
-            this.lblDest.Location = new System.Drawing.Point(24, 75);
+            this.lblDest.Location = new System.Drawing.Point(22, 67);
             this.lblDest.Name = "lblDest";
             this.lblDest.Size = new System.Drawing.Size(49, 18);
             this.lblDest.TabIndex = 7;
@@ -148,8 +154,8 @@
             // 
             this.lblStart.AutoSize = true;
             this.lblStart.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStart.ForeColor = System.Drawing.Color.DarkViolet;
-            this.lblStart.Location = new System.Drawing.Point(24, 43);
+            this.lblStart.ForeColor = System.Drawing.Color.Crimson;
+            this.lblStart.Location = new System.Drawing.Point(22, 35);
             this.lblStart.Name = "lblStart";
             this.lblStart.Size = new System.Drawing.Size(50, 18);
             this.lblStart.TabIndex = 6;
@@ -157,13 +163,13 @@
             // 
             // lblChoose
             // 
-            this.lblChoose.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChoose.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblChoose.Location = new System.Drawing.Point(13, 116);
+            this.lblChoose.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChoose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblChoose.Location = new System.Drawing.Point(41, 367);
             this.lblChoose.Name = "lblChoose";
             this.lblChoose.Size = new System.Drawing.Size(124, 16);
             this.lblChoose.TabIndex = 8;
-            this.lblChoose.Text = "By Nguyen Khanh";
+            this.lblChoose.Text = "By Khanh.Nguyen";
             this.lblChoose.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // picMap
@@ -179,20 +185,56 @@
             // 
             // grpInfo
             // 
-            this.grpInfo.Controls.Add(this.lblChoose);
+            this.grpInfo.Controls.Add(this.lblNodes);
+            this.grpInfo.Controls.Add(this.lblSteps);
             this.grpInfo.Controls.Add(this.lblStart);
             this.grpInfo.Controls.Add(this.lblDest);
-            this.grpInfo.Location = new System.Drawing.Point(29, 324);
+            this.grpInfo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.grpInfo.Location = new System.Drawing.Point(29, 399);
             this.grpInfo.Name = "grpInfo";
-            this.grpInfo.Size = new System.Drawing.Size(146, 149);
+            this.grpInfo.Size = new System.Drawing.Size(146, 188);
             this.grpInfo.TabIndex = 9;
             this.grpInfo.TabStop = false;
             this.grpInfo.Text = "Info";
+            // 
+            // lblNodes
+            // 
+            this.lblNodes.AutoSize = true;
+            this.lblNodes.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNodes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.lblNodes.Location = new System.Drawing.Point(22, 145);
+            this.lblNodes.Name = "lblNodes";
+            this.lblNodes.Size = new System.Drawing.Size(48, 16);
+            this.lblNodes.TabIndex = 10;
+            this.lblNodes.Text = "Nodes:";
+            // 
+            // lblSteps
+            // 
+            this.lblSteps.AutoSize = true;
+            this.lblSteps.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSteps.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.lblSteps.Location = new System.Drawing.Point(22, 116);
+            this.lblSteps.Name = "lblSteps";
+            this.lblSteps.Size = new System.Drawing.Size(45, 16);
+            this.lblSteps.TabIndex = 9;
+            this.lblSteps.Text = "Steps:";
             // 
             // timer
             // 
             this.timer.Interval = 400;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // tbSpeed
+            // 
+            this.tbSpeed.Location = new System.Drawing.Point(21, 214);
+            this.tbSpeed.Maximum = 40;
+            this.tbSpeed.Minimum = 10;
+            this.tbSpeed.Name = "tbSpeed";
+            this.tbSpeed.Size = new System.Drawing.Size(104, 45);
+            this.tbSpeed.TabIndex = 12;
+            this.tbSpeed.Value = 10;
+            this.tbSpeed.Scroll += new System.EventHandler(this.tbSpeed_Scroll);
             // 
             // Form1
             // 
@@ -201,6 +243,7 @@
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(984, 641);
             this.Controls.Add(this.grpInfo);
+            this.Controls.Add(this.lblChoose);
             this.Controls.Add(this.picMap);
             this.Controls.Add(this.grpControl);
             this.Name = "Form1";
@@ -211,6 +254,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.grpInfo.ResumeLayout(false);
             this.grpInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -231,6 +275,9 @@
         private System.Windows.Forms.GroupBox grpInfo;
         private System.Windows.Forms.CheckBox cbShowStep;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Label lblNodes;
+        private System.Windows.Forms.Label lblSteps;
+        private System.Windows.Forms.TrackBar tbSpeed;
     }
 }
 
