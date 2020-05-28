@@ -126,7 +126,7 @@ namespace TTCNTT
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (countStep < maxStep-1)
+            if (countStep < maxStep - 1)
             {
                 countStep++;
             }
@@ -142,7 +142,7 @@ namespace TTCNTT
         private void tbSpeed_Scroll(object sender, EventArgs e)
         {
             int speed = (sender as TrackBar).Value;
-            timer.Interval = 4000 / speed;
+            timer.Interval = 8000 / speed;
         }
 
         private void btnFind_Click(object sender, EventArgs e)
@@ -212,6 +212,60 @@ namespace TTCNTT
             }
         }
 
+        private void cbShowLine_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbShowLine.Checked)
+                picWithLine();
+            else
+                picWithoutLine();
+        }
+
+        void picWithLine()
+        {
+            Point p;
+            Bitmap bitmap = new Bitmap(W, H);
+            Graphics g = Graphics.FromImage(bitmap);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.TextRenderingHint = TextRenderingHint.AntiAlias;
+            for (int i = 0; i < countPoint; i++)
+            {
+                for (int j = 0; j < countPoint; j++)
+                {
+                    if (distance[i, j] != 0)
+                    {
+                        g.DrawLine(penBlackArrow, lines[i, j].p1, lines[i, j].p2);
+                    }
+                }
+            }
+            for (int i = 0; i < countPoint; i++)
+            {
+                p = points[i];
+                Rectangle rect = new Rectangle(p.X - radius, p.Y - radius, radius2, radius2);
+                g.FillEllipse(Brushes.LightGray, rect);
+                g.DrawEllipse(pen, rect);
+                g.DrawString(i.ToString(), drawFont, Brushes.Black, p, sf);
+            }
+            picMap.Image = bitmap;
+        }
+
+        void picWithoutLine()
+        {
+            Point p;
+            Bitmap bitmap = new Bitmap(W, H);
+            Graphics g = Graphics.FromImage(bitmap);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.TextRenderingHint = TextRenderingHint.AntiAlias;
+            for (int i = 0; i < countPoint; i++)
+            {
+                p = points[i];
+                Rectangle rect = new Rectangle(p.X - radius, p.Y - radius, radius2, radius2);
+                g.FillEllipse(Brushes.LightGray, rect);
+                g.DrawEllipse(pen, rect);
+                g.DrawString(i.ToString(), drawFont, Brushes.Black, p, sf);
+            }
+            picMap.Image = bitmap;
+        }
+
         void generate()
         {
             int[] array = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
@@ -255,30 +309,10 @@ namespace TTCNTT
                 lines[p.X, p.Y] = new PairPoint() { p1 = new Point(px1 + offsetX, py1 + offsetY), p2 = new Point(px2 - offsetX, py2 - offsetY) };
             }
 
-
-            Bitmap bitmap = new Bitmap(W, H);
-            Graphics g = Graphics.FromImage(bitmap);
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            g.TextRenderingHint = TextRenderingHint.AntiAlias;
-            for (int i = 0; i < countPoint; i++)
-            {
-                for (int j = 0; j < countPoint; j++)
-                {
-                    if (distance[i, j] != 0)
-                    {
-                        g.DrawLine(penBlackArrow, lines[i, j].p1, lines[i, j].p2);
-                    }
-                }
-            }
-            for (int i = 0; i < countPoint; i++)
-            {
-                p = points[i];
-                Rectangle rect = new Rectangle(p.X - radius, p.Y - radius, radius2, radius2);
-                g.FillEllipse(Brushes.LightGray, rect);
-                g.DrawEllipse(pen, rect);
-                g.DrawString(i.ToString(), drawFont, Brushes.Black, p, sf);
-            }
-            picMap.Image = bitmap;
+            if (cbShowLine.Checked)
+                picWithLine();
+            else
+                picWithoutLine();
         }
 
         Point randomInRegion(int region)

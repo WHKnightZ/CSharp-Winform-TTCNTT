@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grpControl = new System.Windows.Forms.GroupBox();
+            this.cbShowLine = new System.Windows.Forms.CheckBox();
+            this.tbSpeed = new System.Windows.Forms.TrackBar();
             this.cbShowStep = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPoint = new System.Windows.Forms.Label();
@@ -45,15 +47,15 @@
             this.lblNodes = new System.Windows.Forms.Label();
             this.lblSteps = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.tbSpeed = new System.Windows.Forms.TrackBar();
             this.grpControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.grpInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // grpControl
             // 
+            this.grpControl.Controls.Add(this.cbShowLine);
             this.grpControl.Controls.Add(this.tbSpeed);
             this.grpControl.Controls.Add(this.cbShowStep);
             this.grpControl.Controls.Add(this.label1);
@@ -66,14 +68,40 @@
             this.grpControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.grpControl.Location = new System.Drawing.Point(29, 25);
             this.grpControl.Name = "grpControl";
-            this.grpControl.Size = new System.Drawing.Size(146, 318);
+            this.grpControl.Size = new System.Drawing.Size(146, 351);
             this.grpControl.TabIndex = 0;
             this.grpControl.TabStop = false;
             this.grpControl.Text = "Control";
             // 
+            // cbShowLine
+            // 
+            this.cbShowLine.AutoSize = true;
+            this.cbShowLine.Checked = true;
+            this.cbShowLine.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbShowLine.Location = new System.Drawing.Point(36, 207);
+            this.cbShowLine.Name = "cbShowLine";
+            this.cbShowLine.Size = new System.Drawing.Size(86, 20);
+            this.cbShowLine.TabIndex = 13;
+            this.cbShowLine.Text = "Show Line";
+            this.cbShowLine.UseVisualStyleBackColor = true;
+            this.cbShowLine.CheckedChanged += new System.EventHandler(this.cbShowLine_CheckedChanged);
+            // 
+            // tbSpeed
+            // 
+            this.tbSpeed.Location = new System.Drawing.Point(21, 247);
+            this.tbSpeed.Maximum = 80;
+            this.tbSpeed.Minimum = 10;
+            this.tbSpeed.Name = "tbSpeed";
+            this.tbSpeed.Size = new System.Drawing.Size(104, 45);
+            this.tbSpeed.TabIndex = 12;
+            this.tbSpeed.Value = 10;
+            this.tbSpeed.Scroll += new System.EventHandler(this.tbSpeed_Scroll);
+            // 
             // cbShowStep
             // 
             this.cbShowStep.AutoSize = true;
+            this.cbShowStep.Checked = true;
+            this.cbShowStep.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbShowStep.Location = new System.Drawing.Point(36, 169);
             this.cbShowStep.Name = "cbShowStep";
             this.cbShowStep.Size = new System.Drawing.Size(89, 20);
@@ -101,7 +129,7 @@
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(36, 265);
+            this.btnFind.Location = new System.Drawing.Point(36, 298);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(75, 23);
             this.btnFind.TabIndex = 5;
@@ -165,7 +193,7 @@
             // 
             this.lblChoose.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChoose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblChoose.Location = new System.Drawing.Point(41, 367);
+            this.lblChoose.Location = new System.Drawing.Point(41, 397);
             this.lblChoose.Name = "lblChoose";
             this.lblChoose.Size = new System.Drawing.Size(124, 16);
             this.lblChoose.TabIndex = 8;
@@ -191,9 +219,9 @@
             this.grpInfo.Controls.Add(this.lblDest);
             this.grpInfo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.grpInfo.Location = new System.Drawing.Point(29, 399);
+            this.grpInfo.Location = new System.Drawing.Point(29, 426);
             this.grpInfo.Name = "grpInfo";
-            this.grpInfo.Size = new System.Drawing.Size(146, 188);
+            this.grpInfo.Size = new System.Drawing.Size(146, 182);
             this.grpInfo.TabIndex = 9;
             this.grpInfo.TabStop = false;
             this.grpInfo.Text = "Info";
@@ -203,7 +231,7 @@
             this.lblNodes.AutoSize = true;
             this.lblNodes.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNodes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.lblNodes.Location = new System.Drawing.Point(22, 145);
+            this.lblNodes.Location = new System.Drawing.Point(22, 139);
             this.lblNodes.Name = "lblNodes";
             this.lblNodes.Size = new System.Drawing.Size(48, 16);
             this.lblNodes.TabIndex = 10;
@@ -214,7 +242,7 @@
             this.lblSteps.AutoSize = true;
             this.lblSteps.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSteps.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.lblSteps.Location = new System.Drawing.Point(22, 116);
+            this.lblSteps.Location = new System.Drawing.Point(22, 110);
             this.lblSteps.Name = "lblSteps";
             this.lblSteps.Size = new System.Drawing.Size(45, 16);
             this.lblSteps.TabIndex = 9;
@@ -222,19 +250,8 @@
             // 
             // timer
             // 
-            this.timer.Interval = 400;
+            this.timer.Interval = 800;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // tbSpeed
-            // 
-            this.tbSpeed.Location = new System.Drawing.Point(21, 214);
-            this.tbSpeed.Maximum = 40;
-            this.tbSpeed.Minimum = 10;
-            this.tbSpeed.Name = "tbSpeed";
-            this.tbSpeed.Size = new System.Drawing.Size(104, 45);
-            this.tbSpeed.TabIndex = 12;
-            this.tbSpeed.Value = 10;
-            this.tbSpeed.Scroll += new System.EventHandler(this.tbSpeed_Scroll);
             // 
             // Form1
             // 
@@ -246,15 +263,16 @@
             this.Controls.Add(this.lblChoose);
             this.Controls.Add(this.picMap);
             this.Controls.Add(this.grpControl);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TTCNTT";
             this.grpControl.ResumeLayout(false);
             this.grpControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.grpInfo.ResumeLayout(false);
             this.grpInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,6 +296,7 @@
         private System.Windows.Forms.Label lblNodes;
         private System.Windows.Forms.Label lblSteps;
         private System.Windows.Forms.TrackBar tbSpeed;
+        private System.Windows.Forms.CheckBox cbShowLine;
     }
 }
 
